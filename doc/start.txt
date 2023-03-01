@@ -1,0 +1,43 @@
+docker build -t doc2 .
+docker run --rm -it -p 8888:8888 -v C:/Users/creat/Desktop/doc/save:/work --gpus all doc2 /bin/bash
+
+#動作確認
+python3 torch_train.py
+
+#ノートブック起動
+jupyter notebook --port 8888 --ip=0.0.0.0 --allow-root
+#もしくは
+. note.sh
+
+
+
+#ノートブック終了
+ctrl+C
+
+
+
+Ctrl+p Ctrl+qと入力するとコンテナを終了せずに抜ける
+
+#コンテナ抜け方
+ctrl+z   ctrl+c でコンテナ抜ける
+exit() pythonから抜ける
+
+
+#コンテナ名を調べる
+docker ps
+#コンテナに入る
+docker container exec -it 34b317b944bc bash
+
+
+#GPU接続確認
+
+##CUDAバージョン
+nvcc -V
+
+##GPUのメモリ使用量
+nvidia-smi -l
+
+
+# 一時ファイルを消す
+
+docker system prune
